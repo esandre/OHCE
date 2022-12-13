@@ -7,6 +7,7 @@ namespace OHCE.Test.Utilities
         public static Ohce Default => new OhceBuilder().Build();
 
         private ILangue _langue = new LangueFrançaise();
+        private MomentDeLaJournée _momentDeLaJournée = MomentDeLaJournée.Indéterminé;
 
         public OhceBuilder AyantPourLangue(ILangue langue)
         {
@@ -14,6 +15,12 @@ namespace OHCE.Test.Utilities
             return this;
         }
 
-        public Ohce Build() => new (_langue);
+        public OhceBuilder AyantPourMomentDeLaJournée(MomentDeLaJournée moment)
+        {
+            _momentDeLaJournée = moment;
+            return this;
+        }
+
+        public Ohce Build() => new (_langue, _momentDeLaJournée);
     }
 }

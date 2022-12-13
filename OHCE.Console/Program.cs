@@ -2,7 +2,7 @@
 using OHCE.Langues;
 
 Console.WriteLine(
-    new Ohce(new LangueFrançaise()).Miroir(
+    new Ohce(new LangueFrançaise(), MomentDeLaJournée.Indéterminé).Miroir(
         Console.ReadLine() ?? string.Empty
         )
     );

@@ -2,7 +2,7 @@
 {
     public interface ILangue
     {
-        string Salutation { get; }
+        string Saluer(MomentDeLaJournée moment);
         string Acquittance { get; }
         string BienDit { get; }
     }

@@ -20,17 +20,35 @@ namespace OHCE.Test
 
         public static IEnumerable<object[]> CasTestBonjour => new []
         {
-            new object[] { new LangueAnglaise(), Expressions.Anglais.Salutation },
-            new object[] { new LangueFrançaise(), Expressions.Français.Salutation },
+            new object[]
+            {
+                new LangueAnglaise(), 
+                MomentDeLaJournée.Indéterminé, 
+                Expressions.Anglais.Salutation
+            },
+            new object[]
+            {
+                new LangueAnglaise(),
+                MomentDeLaJournée.Matin,
+                Expressions.Anglais.GoodMorning
+            },
+            new object[]
+            {
+                new LangueFrançaise(), 
+                MomentDeLaJournée.Indéterminé, 
+                Expressions.Français.Salutation
+            },
         };
 
         [Theory]
         [MemberData(nameof(CasTestBonjour))]
-        public void TestBonjour(ILangue langue, string salutation)
+        public void TestBonjour(ILangue langue, MomentDeLaJournée moment, string salutation)
         {
-            // ETANT un utilisateur parlant <langue>
+            // ETANT DONNE un utilisateur parlant <langue>
+            // ET que nous sommes à un moment de la journée <moment>
             var ohce = new OhceBuilder()
                 .AyantPourLangue(langue)
+                .AyantPourMomentDeLaJournée(moment)
                 .Build();
 
             // QUAND on envoie une chaîne à OHCE
@@ -50,7 +68,7 @@ namespace OHCE.Test
         [MemberData(nameof(CasTestAuRevoir))]
         public void TestAuRevoir(ILangue langue, string acquittance)
         {
-            // ETANT un utilisateur parlant <langue>
+            // ETANT DONNE un utilisateur parlant <langue>
             var ohce = new OhceBuilder()
                 .AyantPourLangue(langue)
                 .Build();

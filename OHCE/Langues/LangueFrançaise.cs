@@ -3,7 +3,7 @@
     public class LangueFrançaise : ILangue
     {
         /// <inheritdoc />
-        public string Salutation => Expressions.Français.Salutation;
+        public string Saluer(MomentDeLaJournée moment) => Expressions.Français.Salutation;
 
         /// <inheritdoc />
         public string Acquittance => Expressions.Français.Acquittance;

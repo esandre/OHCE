@@ -7,6 +7,7 @@
             public const string Salutation = "Hello";
             public const string Acquittance = "Goodbye";
             public const string BienDit = "Well done";
+            public const string GoodMorning = "Good Morning";
         }
 
         public static class Français
