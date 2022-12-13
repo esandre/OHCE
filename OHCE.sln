@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OHCE", "OHCE\OHCE.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OHCE.Test", "OHCE.Test\OHCE.Test.csproj", "{C3E05438-C807-4EE4-80E4-3EE4CD533D64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OHCE.Console", "OHCE.Console\OHCE.Console.csproj", "{51816961-4FD4-4E2E-AEE8-788E96BFBC4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C3E05438-C807-4EE4-80E4-3EE4CD533D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3E05438-C807-4EE4-80E4-3EE4CD533D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3E05438-C807-4EE4-80E4-3EE4CD533D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51816961-4FD4-4E2E-AEE8-788E96BFBC4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51816961-4FD4-4E2E-AEE8-788E96BFBC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51816961-4FD4-4E2E-AEE8-788E96BFBC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51816961-4FD4-4E2E-AEE8-788E96BFBC4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
