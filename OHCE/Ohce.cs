@@ -18,8 +18,8 @@ namespace OHCE
 
             return _langue.Salutation
                    + miroir
-                   + (estUnPalindrome ? "Bien dit" : string.Empty)
-                   + "Au revoir";
+                   + (estUnPalindrome ? _langue.BienDit : string.Empty)
+                   + _langue.Acquittance;
         }
     }
 }

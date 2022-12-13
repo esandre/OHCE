@@ -40,22 +40,46 @@ namespace OHCE.Test
             Assert.StartsWith(salutation, résultat);
         }
 
-        [Fact]
-        public void TestAuRevoir()
+        public static IEnumerable<object[]> CasTestAuRevoir => new[]
         {
-            // QUAND on envoie une chaîne à OHCE
-            var résultat = OhceBuilder.Default.Miroir("toto");
+            new object[] { new LangueFrançaise(), Expressions.Français.Acquittance },
+            new object[] { new LangueAnglaise(), Expressions.Anglais.Acquittance }
+        };
 
-            // ALORS il répond 'Au revoir' en dernier
-            Assert.EndsWith("Au revoir", résultat);
+        [Theory]
+        [MemberData(nameof(CasTestAuRevoir))]
+        public void TestAuRevoir(ILangue langue, string acquittance)
+        {
+            // ETANT un utilisateur parlant <langue>
+            var ohce = new OhceBuilder()
+                .AyantPourLangue(langue)
+                .Build();
+
+            // QUAND on envoie une chaîne à OHCE
+            var résultat = ohce.Miroir("toto");
+
+            // ALORS il salue en <langue> en dernier
+            Assert.EndsWith(acquittance, résultat);
         }
 
-        [Fact]
-        public void TestPalindrome()
+        public static IEnumerable<object[]> CasTestBienDit => new[]
         {
+            new object[] { new LangueFrançaise(), Expressions.Français.BienDit },
+            new object[] { new LangueAnglaise(), Expressions.Anglais.BienDit }
+        };
+
+        [Theory]
+        [MemberData(nameof(CasTestBienDit))]
+        public void TestPalindrome(ILangue langue, string bienDit)
+        {
+            // ETANT DONNE un utilisateur parlant <langue>
+            var ohce = new OhceBuilder()
+                .AyantPourLangue(langue)
+                .Build();
+
             // QUAND on envoie un palindrome à OHCE
             const string palindrome = "radar";
-            var résultat = OhceBuilder.Default.Miroir(palindrome);
+            var résultat = ohce.Miroir(palindrome);
 
             // ALORS il le renvoie
             Assert.Contains(palindrome, résultat);
@@ -63,19 +87,25 @@ namespace OHCE.Test
                                 + palindrome.Length;
             var résultatAprèsPalindrome = résultat[finPalindrome..];
 
-            // ET écrit 'Bien dit' juste ensuite
-            Assert.StartsWith("Bien dit", résultatAprèsPalindrome);
+            // ET écrit 'Bien dit' en <langue> juste ensuite
+            Assert.StartsWith(bienDit, résultatAprèsPalindrome);
         }
 
-        [Fact]
-        public void TestNonPalindrome()
+        [Theory]
+        [MemberData(nameof(CasTestBienDit))]
+        public void TestNonPalindrome(ILangue langue, string bienDit)
         {
+            // ETANT DONNE un utilisateur parlant <langue>
+            var ohce = new OhceBuilder()
+                .AyantPourLangue(langue)
+                .Build();
+
             // QUAND on envoie une chaîne qui n'est palindrome à OHCE
             const string chaîne = "test";
-            var résultat = OhceBuilder.Default.Miroir(chaîne);
+            var résultat = ohce.Miroir(chaîne);
             
-            // ALORS 'Bien dit' n'est pas renvoyé
-            Assert.DoesNotContain("Bien dit", résultat);
+            // ALORS 'Bien dit' en <langue> n'est pas renvoyé
+            Assert.DoesNotContain(bienDit, résultat);
         }
     }
 }
